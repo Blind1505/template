@@ -1,0 +1,62 @@
+<?php
+	class M_database extends CI_Model
+	{
+	 var $tabel='priv';
+	 public function __construct()
+	 {
+		parent::__construct();
+	 }
+	 
+	 public function ceklogin ($username,$passwordmd5)
+	 {
+		$this->db->where('username',$username);
+		$this->db->where('password',$passwordmd5);
+		$query = $this->db->get($this->tabel);
+		if ($query->num_rows()>0)
+		return $query->result_array();
+	 }
+	 
+	 public function simpan_bio($data,$table)
+	  {
+	   $this->db->insert($table,$data);
+	  }
+	 
+	 public function get()
+	 {
+		$query	= $this->db->query("SELECT * From isi_bio");
+		return $query->result();
+	}
+	public function get_data()
+	 {
+		$query	= $this->db->query("SELECT * From form_bio");
+		return $query->result();
+	}
+	
+	public function alter_bio()
+	{
+		$name	= $this->input->post('name');
+		$ctl	= strtolower($name);
+		$dws	= str_replace(" ","",$ctl);
+		$type	= $this->input->post('type');
+		if ($type == 'text')
+		{
+		$t = 'varchar';
+		}
+		else if ($type == 'number')
+		{
+		 $t = 'int';
+		 }
+		 else
+		 { $t = 'date';}
+	
+	$length	= $this->input->post('length');
+		if ( $t == 'date')
+		 {
+			$query = $this->db->query("ALTER TABLE `form_bio` ADD $dws $t");
+		 }
+		 else
+		 {
+			$query = $this->db->query("ALTER TABLE `form_bio` ADD $dws $t($length)");
+		 }
+	}
+}
