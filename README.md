@@ -1,2 +1,1 @@
-# testing
-try to make a dynamic form input
+HERE SOME TEMPLATE FOR MAKIN' A WEB
