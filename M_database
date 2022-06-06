@@ -6,3 +6,8 @@
 	 {
 		parent::__construct();
 	 }
+	 public function ceklogin($username,$passmd5)
+	 {
+	 	$this->db->where('username',$username);
+	 	$this->db->where('passmd5',$password);
+	}
