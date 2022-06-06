@@ -9,9 +9,4 @@ class Base extends CI_Controller
 		$this->load->model('M_database');
 	 }
 	
-	public function index()
-	{
-		$this->load->view('temp/header');
-		$this->load->view('temp/nav');
-		$this->load->view('temp/home');
-		$this->load->view('temp/footer');	
+	
